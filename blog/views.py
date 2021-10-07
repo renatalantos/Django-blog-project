@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from django.contrib import messages
 from .models import Post
 from .forms import CommentForm
 
@@ -51,8 +50,6 @@ class PostDetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
-            messages.add_message(request, messages.SUCCESS, 
-                'Your comment was successfully posted. It will appear on the website after it has been approved.')
         else:
             comment_form = CommentForm()    
 
